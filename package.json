@@ -1,0 +1,14 @@
+{
+  "name": "sajty-na-ii-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Лендинг программы «Сайты на ИИ» — статический HTML/CSS/JS",
+  "scripts": {
+    "start": "npx --yes http-server . -p 5173 -c-1 -o /index.html",
+    "serve": "npx --yes http-server . -p 5173 -c-1"
+  },
+  "keywords": [
+    "landing",
+    "static"
+  ]
+}

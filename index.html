@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сайты на ИИ — обучение созданию лендингов, сайтов и воронок</title>
+  <meta name="description" content="Практическое обучение по созданию сайтов, лендингов и воронок с помощью GPT, Lovable и Cursor. Для экспертов, SMM-специалистов и фрилансеров.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-welcome" data-page="welcome">
+  <div class="welcome-bg" aria-hidden="true"></div>
+  <header class="site-header site-header--welcome">
+    <div class="container header-inner">
+      <span class="logo logo-static">Сайты на ИИ</span>
+      <a class="btn btn-sm" href="course.html#application">Записаться</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="welcome-hero section">
+      <div class="container welcome-hero-grid">
+        <div class="welcome-hero-content reveal">
+          <p class="eyebrow">Практика · маркетинг · ИИ</p>
+          <h1>Добро пожаловать в «Сайты на ИИ»</h1>
+          <p class="lead">Коротко о программе: вы научитесь создавать <strong>сайты без кода</strong> — с оффером, структурой, текстами и воронкой, используя <strong>GPT</strong> для смысла, <strong>Lovable</strong> для сборки и <strong>Cursor</strong> для доводки.</p>
+          <div class="welcome-actions">
+            <a class="btn btn-lg" href="course.html">Смотреть программу</a>
+            <a class="btn btn-ghost" href="course.html#tariffs">К тарифам</a>
+          </div>
+        </div>
+        <div class="welcome-hero-side reveal">
+          <div class="welcome-mini-mock" role="img" aria-label="Схема: ИИ-инструменты и готовая страница">
+            <div class="wmm-line"></div>
+            <div class="wmm-row">
+              <span class="wmm-pill">GPT</span>
+              <span class="wmm-pill">Lovable</span>
+              <span class="wmm-pill">Cursor</span>
+            </div>
+            <div class="wmm-line short"></div>
+            <p class="wmm-footnote">создание сайтов с ИИ → готовая страница</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <h2 class="reveal">Чему посвящено обучение</h2>
+        <p class="lead reveal">Это обучение созданию сайтов и воронок: от идеи и аудитории до публикации. Подойдет как <strong>сайт для онлайн-курса</strong>, <strong>сайт для консультаций</strong> и как навык <strong>лендинги на заказ</strong> для клиентов.</p>
+        <div class="grid cards-3">
+          <article class="card reveal">
+            <h3>Продажи, не «красивости»</h3>
+            <p>Оффер, структура, тексты, воронка продаж на сайте — в одной логике.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Три инструмента</h3>
+            <p>Текст и сценарий в GPT, быстрая верстка в Lovable, точные правки в Cursor.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Результат в конце</h3>
+            <p>Рабочая страница под ваш продукт и понимание, как продвигать услугу создания сайтов.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="goal">
+      <div class="container">
+        <h2 class="reveal">Что для вас важнее сейчас?</h2>
+        <p class="lead reveal">Выберите вариант — подсказка сохранится в браузере и появится на странице программы.</p>
+        <div class="goal-picker reveal" id="goal-picker" role="group" aria-label="Ваша цель">
+          <button type="button" class="goal-btn" data-goal="self" data-goal-hint="Сайт для своего бизнеса: консультации, курс или запуск.">
+            Сайт для себя
+          </button>
+          <button type="button" class="goal-btn" data-goal="clients" data-goal-hint="Лендинги и сайты на заказ — расширение линейки услуг.">
+            Сайты для клиентов
+          </button>
+          <button type="button" class="goal-btn" data-goal="both" data-goal-hint="И для себя, и для клиентов: полный путь.">
+            И то, и другое
+          </button>
+        </div>
+        <p class="helper-text goal-status" id="goal-status" role="status" aria-live="polite" hidden></p>
+        <div class="welcome-actions center">
+          <a class="btn btn-lg" href="course.html">Перейти к полной программе</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
