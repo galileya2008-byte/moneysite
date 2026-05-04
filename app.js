@@ -1,8 +1,9 @@
-(function () {
+-(function () {
   "use strict";
 
   var GOAL_KEY = "sajtyNaIi_goal";
   var BANNER_KEY = "sajtyNaIi_goalBannerClosed";
+  var CHECKLIST_KEY = "sajtyNaIi_checklistState";
 
   function initReveal() {
     var items = document.querySelectorAll(".reveal");
@@ -123,6 +124,98 @@
         if (window.innerWidth >= 980) setOpen(false);
       });
     }
+
+    var checklistForm = document.getElementById("interactive-checklist");
+    if (checklistForm) {
+      initChecklist(checklistForm);
+    }
+  }
+
+  function initChecklist(form) {
+    var inputs = Array.prototype.slice.call(form.querySelectorAll("input[type='checkbox']"));
+    var countEl = document.getElementById("checklist-count");
+    var progressFill = document.getElementById("checklist-progress-fill");
+    var resultTitle = document.getElementById("checklist-result-title");
+    var resultText = document.getElementById("checklist-result-text");
+    var resultCta = document.getElementById("checklist-result-cta");
+    if (!inputs.length || !countEl || !progressFill || !resultTitle || !resultText || !resultCta) return;
+
+    var saved = localStorage.getItem(CHECKLIST_KEY);
+    if (saved) {
+      try {
+        var parsed = JSON.parse(saved);
+        inputs.forEach(function (input) {
+          if (parsed.indexOf(input.value) !== -1) {
+            input.checked = true;
+          }
+        });
+      } catch (e) {
+        localStorage.removeItem(CHECKLIST_KEY);
+      }
+    }
+
+    function getState(selectedCount) {
+      if (selectedCount <= 2) {
+        return {
+          title: "Вы в начале пути — это нормально.",
+          text: "Спокойно соберите базу: оффер, структуру и понятную страницу под свой продукт. Это даст уверенный старт.",
+          cta: "Выбрать тариф «Для себя»",
+          href: "https://neirogalina.ru/page247"
+        };
+      }
+      if (selectedCount <= 5) {
+        return {
+          title: "У вас уже хороший фундамент.",
+          text: "Осталось собрать систему воронки и выбрать формат участия по вашей цели. Вы двигаетесь в правильном темпе.",
+          cta: "Сравнить тарифы",
+          href: "#tariffs"
+        };
+      }
+      return {
+        title: "Вы почти готовы к монетизации навыка.",
+        text: "Можно идти в расширенный формат: клиентские проекты, вовлекающие онлайн-игры и Telegram-боты для записей и оповещений.",
+        cta: "Выбрать тариф «Для себя и на заказ»",
+        href: "https://neirogalina.ru/page248"
+      };
+    }
+
+    function update() {
+      var selected = inputs.filter(function (input) {
+        return input.checked;
+      });
+
+      inputs.forEach(function (input) {
+        var item = input.closest(".checklist-item");
+        if (item) item.classList.toggle("is-checked", input.checked);
+      });
+
+      var count = selected.length;
+      var total = inputs.length;
+      var percent = Math.round((count / total) * 100);
+      countEl.textContent = count + "/" + total;
+      progressFill.style.width = percent + "%";
+
+      var state = getState(count);
+      resultTitle.textContent = state.title;
+      resultText.textContent = state.text;
+      resultCta.textContent = state.cta;
+      resultCta.setAttribute("href", state.href);
+      if (state.href.indexOf("http") === 0) {
+        resultCta.setAttribute("target", "_blank");
+        resultCta.setAttribute("rel", "noopener noreferrer");
+      } else {
+        resultCta.removeAttribute("target");
+        resultCta.removeAttribute("rel");
+      }
+
+      var selectedValues = selected.map(function (input) {
+        return input.value;
+      });
+      localStorage.setItem(CHECKLIST_KEY, JSON.stringify(selectedValues));
+    }
+
+    form.addEventListener("change", update);
+    update();
   }
 
   var page = document.body && document.body.getAttribute("data-page");
